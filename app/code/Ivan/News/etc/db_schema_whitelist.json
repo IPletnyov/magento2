@@ -1,0 +1,13 @@
+{
+    "news": {
+        "column": {
+            "id": true,
+            "title": true,
+            "text": true,
+            "is_active": true
+        }
+    },
+    "constraint": {
+        "PRIMARY": true
+    }
+}
