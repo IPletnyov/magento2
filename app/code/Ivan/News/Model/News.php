@@ -25,9 +25,9 @@ class News extends AbstractExtensibleModel implements NewsInterface
     /**
      * @inheritDoc
      */
-    public function getNewsId(): ?int
+    public function getId(): ?int
     {
-        return $this->getId() ? (int)$this->getId() : null;
+        return parent::getId() ? (int)parent::getId() : null;
     }
 
     /**

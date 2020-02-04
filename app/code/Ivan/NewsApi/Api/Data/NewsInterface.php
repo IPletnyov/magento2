@@ -32,11 +32,11 @@ interface NewsInterface extends ExtensibleDataInterface
     public const FIELD_IS_ACTIVE = 'is_active';
 
     /**
-     * Get news ID.
+     * Return news ID.
      *
-     * @return null|int
+     * @return int|null
      */
-    public function getNewsId(): ?int;
+    public function getId(): ?int;
 
     /**
      * Return news title.

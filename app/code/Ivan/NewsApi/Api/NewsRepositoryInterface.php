@@ -20,11 +20,11 @@ interface NewsRepositoryInterface
      * Save provided news.
      *
      * @param NewsInterface $news
-     * @return NewsInterface
+     * @return void
      * @throws ValidationException
      * @throws CouldNotSaveException
      */
-    public function save(NewsInterface $news): NewsInterface;
+    public function save(NewsInterface $news): void;
 
     /**
      * Get news by id.

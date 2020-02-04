@@ -3,7 +3,7 @@
     <menu>
         <add
             id="Ivan_NewsAdminUi::news"
-            title="All news"
+            title="Custom news"
             translate="title"
             module="Ivan_NewsAdminUi"
             sortOrder="50"

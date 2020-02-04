@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ivan\NewsAdminUi\Ui\DataProvider;
 
+use Ivan\NewsApi\Api\Data\NewsInterface;
 use Ivan\NewsApi\Api\NewsRepositoryInterface;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
@@ -80,7 +81,7 @@ class NewsDataProvider extends DataProvider
             $result->getItems(),
             $result->getTotalCount(),
             $searchCriteria,
-            'news_id'
+            NewsInterface::FIELD_ID
         );
     }
 }
