@@ -10,14 +10,15 @@ namespace Ivan\News\Model\NewsRepository;
 use Ivan\News\Model\ResourceModel\News\CollectionFactory;
 use Ivan\NewsApi\Api\Data\NewsSearchResultInterface;
 use Ivan\NewsApi\Api\Data\NewsSearchResultInterfaceFactory;
+use Ivan\NewsApi\Model\NewsRepository\GetNewsListInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**
- * Perform search of news by search criteria.
+ * @inheritDoc
  */
-class GetNewsList
+class GetNewsList implements GetNewsListInterface
 {
     /**
      * @var CollectionFactory
@@ -58,8 +59,7 @@ class GetNewsList
     }
 
     /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return NewsSearchResultInterface
+     * @inheritDoc
      */
     public function execute(SearchCriteriaInterface $searchCriteria): NewsSearchResultInterface
     {

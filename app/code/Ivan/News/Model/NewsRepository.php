@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Ivan\News\Model;
 
-use Ivan\News\Model\NewsRepository\GetNews;
-use Ivan\News\Model\NewsRepository\GetNewsList;
-use Ivan\News\Model\NewsRepository\SaveNews;
 use Ivan\NewsApi\Api\Data\NewsInterface;
 use Ivan\NewsApi\Api\Data\NewsSearchResultInterface;
 use Ivan\NewsApi\Api\NewsRepositoryInterface;
+use Ivan\NewsApi\Model\NewsRepository\GetNewsInterface;
+use Ivan\NewsApi\Model\NewsRepository\GetNewsListInterface;
+use Ivan\NewsApi\Model\NewsRepository\SaveNewsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**
@@ -18,29 +18,29 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 class NewsRepository implements NewsRepositoryInterface
 {
     /**
-     * @var GetNewsList
-     */
-    private $getNewsList;
-
-    /**
-     * @var SaveNews
+     * @var SaveNewsInterface
      */
     private $saveNews;
 
     /**
-     * @var GetNews
+     * @var GetNewsInterface
      */
     private $getNews;
 
     /**
-     * @param SaveNews $saveNews
-     * @param GetNews $getNews
-     * @param GetNewsList $getNewsList
+     * @var GetNewsListInterface
+     */
+    private $getNewsList;
+
+    /**
+     * @param SaveNewsInterface $saveNews
+     * @param GetNewsInterface $getNews
+     * @param GetNewsListInterface $getNewsList
      */
     public function __construct(
-        SaveNews $saveNews,
-        GetNews $getNews,
-        GetNewsList $getNewsList
+        SaveNewsInterface $saveNews,
+        GetNewsInterface $getNews,
+        GetNewsListInterface $getNewsList
     ) {
         $this->saveNews = $saveNews;
         $this->getNews = $getNews;

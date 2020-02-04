@@ -7,12 +7,13 @@ namespace Ivan\News\Model\NewsRepository;
 use Ivan\News\Model\ResourceModel\News as NewsResource;
 use Ivan\NewsApi\Api\Data\NewsInterface;
 use Ivan\NewsApi\Api\Data\NewsInterfaceFactory;
+use Ivan\NewsApi\Model\NewsRepository\GetNewsInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 /**
- * Load news by ID.
+ * @inheritDoc
  */
-class GetNews
+class GetNews implements GetNewsInterface
 {
     /**
      * @var NewsInterfaceFactory
@@ -37,9 +38,7 @@ class GetNews
     }
 
     /**
-     * @param int $newsId
-     * @return NewsInterface
-     * @throws NoSuchEntityException
+     * @inheritDoc
      */
     public function execute(int $newsId): NewsInterface
     {

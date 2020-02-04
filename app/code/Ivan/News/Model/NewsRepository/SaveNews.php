@@ -7,13 +7,14 @@ namespace Ivan\News\Model\NewsRepository;
 use Exception;
 use Ivan\News\Model\ResourceModel\News as NewsResource;
 use Ivan\NewsApi\Api\Data\NewsInterface;
+use Ivan\NewsApi\Model\NewsRepository\SaveNewsInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Psr\Log\LoggerInterface;
 
 /**
- * Save provided news.
+ * @inheritDoc
  */
-class SaveNews
+class SaveNews implements SaveNewsInterface
 {
     /**
      * @var NewsResource
@@ -38,9 +39,7 @@ class SaveNews
     }
 
     /**
-     * @param NewsInterface $news
-     * @return void
-     * @throws CouldNotSaveException
+     * @inheritDoc
      */
     public function execute(NewsInterface $news): void
     {
