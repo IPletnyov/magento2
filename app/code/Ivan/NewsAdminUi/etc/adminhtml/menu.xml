@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="Ivan_NewsAdminUi::news"
+            title="All news"
+            translate="title"
+            module="Ivan_NewsAdminUi"
+            sortOrder="50"
+            parent="Magento_Backend::marketing_seo"
+            action="news/news/index"
+            resource="Ivan_NewsAdminUi::news"
+        />
+    </menu>
+</config>

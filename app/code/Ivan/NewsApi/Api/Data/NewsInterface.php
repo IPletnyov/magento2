@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Ivan\NewsApi\Api\Data;
 
+use Magento\Framework\Api\ExtensibleDataInterface;
+
 /**
  * News model interface.
  */
-interface NewsInterface
+interface NewsInterface extends ExtensibleDataInterface
 {
     /**
      * News ID field name.

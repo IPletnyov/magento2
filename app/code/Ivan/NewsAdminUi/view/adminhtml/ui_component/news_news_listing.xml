@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">news_news_listing.news_news_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Create news</label>
+            </button>
+        </buttons>
+        <spinner>news_news_listing_columns</spinner>
+        <deps>
+            <dep>news_news_listing.news_news_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="news_news_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">news_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Ivan_NewsAdminUi::news</aclResource>
+        <dataProvider class="Ivan\NewsAdminUi\Ui\DataProvider\NewsDataProvider" name="news_news_listing_data_source">
+            <settings>
+                <requestFieldName>news_id</requestFieldName>
+                <primaryFieldName>news_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="title"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+<!--        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">-->
+<!--            <action name="enable">-->
+<!--                <settings>-->
+<!--                    <confirm>-->
+<!--                        <message translate="true">Enable selected sources ?</message>-->
+<!--                        <title translate="true">Enable selected sources ?</title>-->
+<!--                    </confirm>-->
+<!--                    <url path="inventory/source/massEnable"/>-->
+<!--                    <type>enable</type>-->
+<!--                    <label translate="true">Enable</label>-->
+<!--                </settings>-->
+<!--            </action>-->
+<!--            <action name="disable">-->
+<!--                <settings>-->
+<!--                    <confirm>-->
+<!--                        <message translate="true">Disable selected sources ?</message>-->
+<!--                        <title translate="true">Disable selected sources ?</title>-->
+<!--                    </confirm>-->
+<!--                    <url path="inventory/source/massDisable"/>-->
+<!--                    <type>disable</type>-->
+<!--                    <label translate="true">Disable</label>-->
+<!--                </settings>-->
+<!--            </action>-->
+<!--        </massaction>-->
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="news_news_listing_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="news/news/gridItemEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">news_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">news_news_listing.news_news_listing.news_news_listing_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">news_news_listing.news_news_listing.news_news_listing_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="10">
+            <settings>
+                <indexField>news_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="title" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <column name="text" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Text</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magento\Backend\Ui\Component\Listing\Column\EditAction" sortOrder="200">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">news/news/edit</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>news_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
