@@ -57,7 +57,7 @@ class SplitSaveButton implements ButtonProviderInterface
         return [
             [
                 'label' => __('Save & Continue'),
-                'id_hard' => 'save_and_continue',
+                'id_hard' => 'save_with_continue',
                 'data_attribute' => [
                     'mage-init' => [
                         'buttonAdapter' => [
