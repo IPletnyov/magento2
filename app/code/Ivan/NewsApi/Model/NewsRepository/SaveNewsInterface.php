@@ -18,9 +18,9 @@ interface SaveNewsInterface
 {
     /**
      * @param NewsInterface $news
-     * @return void
+     * @return NewsInterface
      * @throws ValidationException
      * @throws CouldNotSaveException
      */
-    public function execute(NewsInterface $news): void;
+    public function execute(NewsInterface $news): NewsInterface;
 }

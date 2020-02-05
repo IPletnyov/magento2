@@ -50,9 +50,9 @@ class NewsRepository implements NewsRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function save(NewsInterface $news): void
+    public function save(NewsInterface $news): NewsInterface
     {
-        $this->saveNews->execute($news);
+        return $this->saveNews->execute($news);
     }
 
     /**

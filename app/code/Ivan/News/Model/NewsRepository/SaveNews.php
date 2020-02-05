@@ -41,7 +41,7 @@ class SaveNews implements SaveNewsInterface
     /**
      * @inheritDoc
      */
-    public function execute(NewsInterface $news): void
+    public function execute(NewsInterface $news): NewsInterface
     {
         //TODO Add validation before save.
 
@@ -51,5 +51,7 @@ class SaveNews implements SaveNewsInterface
             $this->logger->error($e->getMessage());
             throw new CouldNotSaveException(__('News is not saved, please try again.'), $e);
         }
+
+        return $news;
     }
 }
