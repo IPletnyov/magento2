@@ -9,6 +9,7 @@ use Ivan\NewsApi\Api\Data\NewsSearchResultInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\StateException;
 use Magento\Framework\Validation\ValidationException;
 
 /**
@@ -29,11 +30,30 @@ interface NewsRepositoryInterface
     /**
      * Get news by id.
      *
-     * @param int $id
+     * @param int $newsId
      * @return NewsInterface
      * @throws NoSuchEntityException
      */
-    public function get(int $id): NewsInterface;
+    public function get(int $newsId): NewsInterface;
+
+    /**
+     * Delete provided news.
+     *
+     * @param NewsInterface $news
+     * @return void
+     * @throws StateException
+     */
+    public function delete(NewsInterface $news): void;
+
+    /**
+     * Load news by provided id and delete.
+     *
+     * @param int $newsId
+     * @return void
+     * @throws NoSuchEntityException
+     * @throws StateException
+     */
+    public function deleteById(int $newsId): void;
 
     /**
      * Get news list by search criteria.

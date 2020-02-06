@@ -7,10 +7,13 @@ namespace Ivan\News\Model;
 use Ivan\NewsApi\Api\Data\NewsInterface;
 use Ivan\NewsApi\Api\Data\NewsSearchResultInterface;
 use Ivan\NewsApi\Api\NewsRepositoryInterface;
+use Ivan\NewsApi\Model\NewsRepository\DeleteNewsInterface;
 use Ivan\NewsApi\Model\NewsRepository\GetNewsInterface;
 use Ivan\NewsApi\Model\NewsRepository\GetNewsListInterface;
 use Ivan\NewsApi\Model\NewsRepository\SaveNewsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\StateException;
 
 /**
  * @inheritDoc
@@ -28,6 +31,11 @@ class NewsRepository implements NewsRepositoryInterface
     private $getNews;
 
     /**
+     * @var DeleteNewsInterface
+     */
+    private $deleteNews;
+
+    /**
      * @var GetNewsListInterface
      */
     private $getNewsList;
@@ -35,16 +43,19 @@ class NewsRepository implements NewsRepositoryInterface
     /**
      * @param SaveNewsInterface $saveNews
      * @param GetNewsInterface $getNews
+     * @param DeleteNewsInterface $deleteNews
      * @param GetNewsListInterface $getNewsList
      */
     public function __construct(
         SaveNewsInterface $saveNews,
         GetNewsInterface $getNews,
+        DeleteNewsInterface $deleteNews,
         GetNewsListInterface $getNewsList
     ) {
         $this->saveNews = $saveNews;
         $this->getNews = $getNews;
         $this->getNewsList = $getNewsList;
+        $this->deleteNews = $deleteNews;
     }
 
     /**
@@ -58,9 +69,26 @@ class NewsRepository implements NewsRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function get(int $id): NewsInterface
+    public function get(int $newsId): NewsInterface
     {
-        return $this->getNews->execute($id);
+        return $this->getNews->execute($newsId);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete(NewsInterface $news): void
+    {
+        $this->deleteNews->execute($news);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function deleteById(int $newsId): void
+    {
+        $news = $this->get($newsId);
+        $this->delete($news);
     }
 
     /**

@@ -5,4 +5,12 @@
             <argument name="targetName" xsi:type="string">news_news_form.news_news_form</argument>
         </arguments>
     </virtualType>
+    <virtualType name="Ivan\NewsAdminUi\Ui\Component\Control\News\DeleteButton" type="Magento\Backend\Ui\Component\Control\DeleteButton">
+        <arguments>
+            <argument name="confirmationMessage" xsi:type="string">Do you confirm delete operation ?</argument>
+            <argument name="idFieldName" xsi:type="string">id</argument>
+            <argument name="deleteRoutePath" xsi:type="string">*/*/delete</argument>
+            <argument name="sortOrder" xsi:type="string">1</argument>
+        </arguments>
+    </virtualType>
 </config>

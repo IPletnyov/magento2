@@ -15,6 +15,7 @@ interface GetNewsInterface
     /**
      * @param int $newsId
      * @return NewsInterface
+     * @throws NoSuchEntityException
      */
     public function execute(int $newsId): NewsInterface;
 }

@@ -30,6 +30,7 @@
                 <label translate="true">Reset</label>
             </button>
             <button name="save" class="Ivan\NewsAdminUi\Ui\Component\Control\News\SplitSaveButton"/>
+            <button name="delete" class="Ivan\NewsAdminUi\Ui\Component\Control\News\DeleteButton"/>
         </buttons>
     </settings>
     <dataSource name="news_news_form_data_source" component="Magento_Ui/js/form/provider">
