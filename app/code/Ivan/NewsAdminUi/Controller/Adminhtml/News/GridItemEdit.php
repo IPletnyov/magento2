@@ -4,45 +4,36 @@ declare(strict_types=1);
 
 namespace Ivan\NewsAdminUi\Controller\Adminhtml\News;
 
+use Ivan\NewsAdminUi\Model\SaveNewsWithData;
 use Ivan\NewsApi\Api\Data\NewsInterface;
-use Ivan\NewsApi\Api\NewsRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Validation\ValidationException;
 
 class GridItemEdit extends Action implements HttpPostActionInterface
 {
     /**
-     * @var NewsRepositoryInterface
+     * @var SaveNewsWithData
      */
-    private $newsRepository;
-
-    /**
-     * @var DataObjectHelper
-     */
-    private $dataObjectHelper;
+    private $saveNewsWithData;
 
     /**
      * @param Action\Context $context
-     * @param NewsRepositoryInterface $newsRepository
-     * @param DataObjectHelper $dataObjectHelper
+     * @param SaveNewsWithData $saveNewsWithData
      */
     public function __construct(
         Action\Context $context,
-        NewsRepositoryInterface $newsRepository,
-        DataObjectHelper $dataObjectHelper
+        SaveNewsWithData $saveNewsWithData
     ) {
         parent::__construct($context);
-        $this->newsRepository = $newsRepository;
-        $this->dataObjectHelper = $dataObjectHelper;
+        $this->saveNewsWithData = $saveNewsWithData;
     }
-
 
     /**
      * @see _isAllowed()
@@ -60,12 +51,10 @@ class GridItemEdit extends Action implements HttpPostActionInterface
         if (null === $itemsToSave) {
             $errorMessages[] = __('Please specify POST data.');
         } else {
-            foreach ($itemsToSave as $item) {
+            foreach ($itemsToSave as $newsData) {
                 try {
-                    $news = $this->newsRepository->get((int)$item[NewsInterface::FIELD_ID]);
-                    $this->dataObjectHelper->populateWithArray($news, $item, NewsInterface::class);
-                    $this->newsRepository->save($news);
-                } catch (CouldNotSaveException|NoSuchEntityException|ValidationException $e) {
+                    $this->saveNewsWithData->execute($newsData);
+                } catch (CouldNotSaveException|NoSuchEntityException|LocalizedException $e) {
                     $errorMessages[] = $e->getMessage();
                 }
             }

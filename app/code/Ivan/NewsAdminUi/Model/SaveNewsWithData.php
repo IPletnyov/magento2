@@ -7,6 +7,7 @@ namespace Ivan\NewsAdminUi\Model;
 use Ivan\NewsApi\Api\Data\NewsInterface;
 use Ivan\NewsApi\Api\Data\NewsInterfaceFactory;
 use Ivan\NewsApi\Api\NewsRepositoryInterface;
+use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Validation\ValidationException;
 
@@ -26,15 +27,23 @@ class SaveNewsWithData
     private $newsFactory;
 
     /**
+     * @var DataObjectHelper
+     */
+    private $dataObjectHelper;
+
+    /**
      * @param NewsRepositoryInterface $newsRepository
      * @param NewsInterfaceFactory $newsFactory
+     * @param DataObjectHelper $dataObjectHelper
      */
     public function __construct(
         NewsRepositoryInterface $newsRepository,
-        NewsInterfaceFactory $newsFactory
+        NewsInterfaceFactory $newsFactory,
+        DataObjectHelper $dataObjectHelper
     ) {
         $this->newsRepository = $newsRepository;
         $this->newsFactory = $newsFactory;
+        $this->dataObjectHelper = $dataObjectHelper;
     }
 
     /**
@@ -47,9 +56,7 @@ class SaveNewsWithData
         $newsData = $this->normalizeNewsData($newsData);
         $news = null === $newsData[NewsInterface::FIELD_ID]
             ? $this->newsFactory->create() : $this->newsRepository->get($newsData[NewsInterface::FIELD_ID]);
-        $news->setTitle($newsData[NewsInterface::FIELD_TITLE])
-            ->setText($newsData[NewsInterface::FIELD_TEXT])
-            ->setIsActive($newsData[NewsInterface::FIELD_IS_ACTIVE]);
+        $this->dataObjectHelper->populateWithArray($news, $newsData, NewsInterface::class);
 
         try {
             $news = $this->newsRepository->save($news);
@@ -70,12 +77,18 @@ class SaveNewsWithData
     {
         $newsData[NewsInterface::FIELD_ID] = isset($newsData[NewsInterface::FIELD_ID])
             ? (int)$newsData[NewsInterface::FIELD_ID] : null;
-        $newsData[NewsInterface::FIELD_TITLE] = isset($newsData[NewsInterface::FIELD_TITLE])
-            ? trim($newsData[NewsInterface::FIELD_TITLE]) : '';
-        $newsData[NewsInterface::FIELD_TEXT] = isset($newsData[NewsInterface::FIELD_TEXT])
-            ? trim($newsData[NewsInterface::FIELD_TEXT]) : '';
-        $newsData[NewsInterface::FIELD_IS_ACTIVE] = isset($newsData[NewsInterface::FIELD_IS_ACTIVE])
-            ? (bool)$newsData[NewsInterface::FIELD_IS_ACTIVE] : false;
+
+        if (isset($newsData[NewsInterface::FIELD_TITLE])) {
+            $newsData[NewsInterface::FIELD_TITLE] = trim($newsData[NewsInterface::FIELD_TITLE]);
+        }
+
+        if (isset($newsData[NewsInterface::FIELD_TEXT])) {
+            $newsData[NewsInterface::FIELD_TEXT] = trim($newsData[NewsInterface::FIELD_TEXT]);
+        }
+
+        if (isset($newsData[NewsInterface::FIELD_IS_ACTIVE])) {
+            $newsData[NewsInterface::FIELD_IS_ACTIVE] = (bool)$newsData[NewsInterface::FIELD_IS_ACTIVE];
+        }
 
         return $newsData;
     }
