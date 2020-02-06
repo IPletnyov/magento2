@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ivan\News\Model;
+namespace Ivan\NewsAdminUi\Model;
 
 use Ivan\NewsApi\Api\Data\NewsInterface;
 use Ivan\NewsApi\Api\Data\NewsInterfaceFactory;
 use Ivan\NewsApi\Api\NewsRepositoryInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Validation\ValidationException;
 
@@ -55,7 +54,7 @@ class SaveNewsWithData
         try {
             $news = $this->newsRepository->save($news);
         } catch (ValidationException $e) {
-            $this->throwValidationException($e);
+            $this->throwExceptionByInvalidData($e);
         }
 
         return $news;
@@ -89,9 +88,14 @@ class SaveNewsWithData
      * @return void
      * @throws LocalizedException
      */
-    private function throwValidationException(ValidationException $exception): void
+    private function throwExceptionByInvalidData(ValidationException $exception): void
     {
-        //TODO Add normal exception.
-        throw new LocalizedException(__('Something with wrong :)'));
+        $exceptionTextItems = [];
+
+        foreach ($exception->getErrors() as $error) {
+            $exceptionTextItems[] = $error->getMessage();
+        }
+
+        throw new LocalizedException(__('Some data is wrong. Errors: %1', implode(', ', $exceptionTextItems)));
     }
 }

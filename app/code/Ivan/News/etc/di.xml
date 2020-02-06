@@ -6,4 +6,13 @@
     <preference for="Ivan\NewsApi\Model\NewsRepository\SaveNewsInterface" type="Ivan\News\Model\NewsRepository\SaveNews"/>
     <preference for="Ivan\NewsApi\Model\NewsRepository\GetNewsInterface" type="Ivan\News\Model\NewsRepository\GetNews"/>
     <preference for="Ivan\NewsApi\Model\NewsRepository\GetNewsListInterface" type="Ivan\News\Model\NewsRepository\GetNewsList"/>
+    <preference for="Ivan\NewsApi\Model\NewsRepository\SaveNews\NewsValidatorPoolInterface" type="Ivan\News\Model\NewsRepository\SaveNews\NewsValidatorPool"/>
+    <preference for="Ivan\NewsApi\Model\NewsRepository\SaveNews\NewsValidatorPool\NewsValidatorItemInterface" type="Ivan\News\Model\NewsRepository\SaveNews\NewsValidatorPool\GeneralValidator"/>
+    <type name="Ivan\News\Model\NewsRepository\SaveNews\NewsValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="general_validations" xsi:type="object">Ivan\News\Model\NewsRepository\SaveNews\NewsValidatorPool\GeneralValidator</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Ivan\NewsAdminUi\Controller\Adminhtml\News;
 
-use Ivan\News\Model\SaveNewsWithData;
-use Ivan\NewsAdminUi\Ui\Component\Control\News\SplitSaveButton;
+use Ivan\NewsAdminUi\Model\SaveNewsWithData;
 use Ivan\NewsApi\Api\Data\NewsInterface;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -82,16 +81,12 @@ class Save extends Action implements HttpPostActionInterface
      */
     private function getRedirectPathParams(NewsInterface $news): array
     {
-        switch ($this->getRequest()->getParam('back')) {
-            case SplitSaveButton::BACK_SAVE_AND_CONTINUE:
-                $redirectParams = ['*/*/edit', ['id' => $news->getId(), '_current' => true]];
-                break;
-            case SplitSaveButton::BACK_SAVE_AND_NEW:
-                $redirectParams = ['*/*/new', []];
-                break;
-            default:
-                $redirectParams = ['*/*/', []];
-                break;
+        $redirectParams = ['*/*/', []];
+
+        if ($this->getRequest()->getParam('back') === 'edit') {
+            $redirectParams = ['*/*/edit', ['id' => $news->getId(), '_current' => true]];
+        } elseif ((bool)$this->getRequest()->getParam('redirect_to_new') === true) {
+            $redirectParams = ['*/*/new', []];
         }
 
         return $redirectParams;
