@@ -15,7 +15,9 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
-
+/**
+ * Edit news.
+ */
 class Edit extends Action implements HttpGetActionInterface
 {
     /**

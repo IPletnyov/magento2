@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ivan\NewsAdminUi\Controller\Adminhtml\News;
 
 use Ivan\NewsAdminUi\Model\SaveNewsWithData;
-use Ivan\NewsApi\Api\Data\NewsInterface;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Json;
@@ -14,8 +13,10 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Validation\ValidationException;
 
+/**
+ * Update grid item.
+ */
 class GridItemEdit extends Action implements HttpPostActionInterface
 {
     /**
@@ -54,7 +55,7 @@ class GridItemEdit extends Action implements HttpPostActionInterface
             foreach ($itemsToSave as $newsData) {
                 try {
                     $this->saveNewsWithData->execute($newsData);
-                } catch (CouldNotSaveException|NoSuchEntityException|LocalizedException $e) {
+                } catch (LocalizedException $e) {
                     $errorMessages[] = $e->getMessage();
                 }
             }

@@ -52,30 +52,41 @@
                 </templates>
             </settings>
         </filters>
-<!--        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">-->
-<!--            <action name="enable">-->
-<!--                <settings>-->
-<!--                    <confirm>-->
-<!--                        <message translate="true">Enable selected sources ?</message>-->
-<!--                        <title translate="true">Enable selected sources ?</title>-->
-<!--                    </confirm>-->
-<!--                    <url path="inventory/source/massEnable"/>-->
-<!--                    <type>enable</type>-->
-<!--                    <label translate="true">Enable</label>-->
-<!--                </settings>-->
-<!--            </action>-->
-<!--            <action name="disable">-->
-<!--                <settings>-->
-<!--                    <confirm>-->
-<!--                        <message translate="true">Disable selected sources ?</message>-->
-<!--                        <title translate="true">Disable selected sources ?</title>-->
-<!--                    </confirm>-->
-<!--                    <url path="inventory/source/massDisable"/>-->
-<!--                    <type>disable</type>-->
-<!--                    <label translate="true">Disable</label>-->
-<!--                </settings>-->
-<!--            </action>-->
-<!--        </massaction>-->
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="enable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Enable selected news ?</message>
+                        <title translate="true">Enable selected news ?</title>
+                    </confirm>
+                    <url path="news/news/massEnable"/>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Disable selected news ?</message>
+                        <title translate="true">Disable selected news ?</title>
+                    </confirm>
+                    <url path="news/news/massDisable"/>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected news ?</message>
+                        <title translate="true">Delete selected news ?</title>
+                    </confirm>
+                    <url path="news/news/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="news_news_listing_columns">

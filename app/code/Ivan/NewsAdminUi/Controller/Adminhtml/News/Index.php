@@ -10,6 +10,9 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\ResultInterface;
 
+/**
+ * News grid page.
+ */
 class Index extends Action implements HttpGetActionInterface
 {
     /**

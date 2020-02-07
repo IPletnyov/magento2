@@ -13,6 +13,9 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
+/**
+ * Save news action.
+ */
 class Save extends Action implements HttpPostActionInterface
 {
     /**
@@ -48,7 +51,7 @@ class Save extends Action implements HttpPostActionInterface
             $news = $this->saveNewsWithData->execute($this->getPostData());
             $this->messageManager->addSuccessMessage(__('You successfully saved the news.'));
             $redirectParams = $this->getRedirectPathParams($news);
-        } catch (LocalizedException|CouldNotSaveException|NoSuchEntityException $e) {
+        } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
             $this->messageManager->addExceptionMessage($e, __('Something went wrong during saving the news.'));
