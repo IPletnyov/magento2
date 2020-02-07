@@ -1,5 +1,5 @@
 {
-    "name": "ivan/module-news-api",
+    "name": "ivan/module-news-frontend-ui",
     "description": "N/A",
     "config": {
         "sort-packages": true
