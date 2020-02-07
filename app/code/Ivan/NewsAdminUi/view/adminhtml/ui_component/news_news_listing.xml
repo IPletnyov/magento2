@@ -25,7 +25,7 @@
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Ivan_NewsAdminUi::news</aclResource>
+        <aclResource>Ivan_NewsApi::news</aclResource>
         <dataProvider class="Ivan\NewsAdminUi\Ui\DataProvider\NewsDataProvider" name="news_news_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>

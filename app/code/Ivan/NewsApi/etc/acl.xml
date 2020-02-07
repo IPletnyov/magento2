@@ -5,7 +5,7 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::marketing">
                     <resource id="Magento_Backend::marketing_seo">
-                        <resource id="Ivan_NewsAdminUi::news" title="News" translate="title" sortOrder="50"/>
+                        <resource id="Ivan_NewsApi::news" title="News" translate="title" sortOrder="50"/>
                     </resource>
                 </resource>
             </resource>

@@ -23,7 +23,7 @@ class Edit extends Action implements HttpGetActionInterface
     /**
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Ivan_NewsAdminUi::news';
+    const ADMIN_RESOURCE = 'Ivan_NewsApi::news';
 
     /**
      * @var NewsRepositoryInterface

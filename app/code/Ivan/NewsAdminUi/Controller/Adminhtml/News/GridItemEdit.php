@@ -39,7 +39,7 @@ class GridItemEdit extends Action implements HttpPostActionInterface
     /**
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Ivan_NewsAdminUi::news';
+    const ADMIN_RESOURCE = 'Ivan_NewsApi::news';
 
     /**
      * @inheritDoc

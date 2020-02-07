@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/news" method="POST">
+        <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Ivan_NewsApi::news"/>
+        </resources>
+    </route>
+    <route url="/V1/news/:newsId" method="PUT">
+        <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Ivan_NewsApi::news"/>
+        </resources>
+    </route>
+    <route url="/V1/news/:newsId" method="GET">
+        <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Ivan_NewsApi::news"/>
+        </resources>
+    </route>
+    <route url="/V1/news/:newsId" method="DELETE">
+        <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Ivan_NewsApi::news"/>
+        </resources>
+    </route>
+    <route url="/V1/news" method="GET">
+        <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Ivan_NewsApi::news"/>
+        </resources>
+    </route>
+</routes>

@@ -9,7 +9,7 @@
             sortOrder="50"
             parent="Magento_Backend::marketing_seo"
             action="news/news/index"
-            resource="Ivan_NewsAdminUi::news"
+            resource="Ivan_NewsApi::news"
         />
     </menu>
 </config>
