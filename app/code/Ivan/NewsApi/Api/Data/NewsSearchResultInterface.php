@@ -14,14 +14,14 @@ interface NewsSearchResultInterface extends SearchResultsInterface
     /**
      * Get news list
      *
-     * @return NewsInterface[]
+     * @return \Ivan\NewsApi\Api\Data\NewsInterface[]
      */
     public function getItems();
 
     /**
      * Set news list
      *
-     * @param NewsInterface[] $items
+     * @param \Ivan\NewsApi\Api\Data\NewsInterface[] $items
      * @return void
      */
     public function setItems(array $items);

@@ -4,20 +4,16 @@ declare(strict_types=1);
 
 namespace Ivan\NewsApi\Model\NewsRepository;
 
-use Ivan\NewsApi\Api\Data\NewsInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Validation\ValidationException;
-
 /**
  * Save news interface.
  */
 interface SaveNewsInterface
 {
     /**
-     * @param NewsInterface $news
-     * @return NewsInterface
-     * @throws ValidationException
-     * @throws CouldNotSaveException
+     * @param \Ivan\NewsApi\Api\Data\NewsInterface $news
+     * @return \Ivan\NewsApi\Api\Data\NewsInterface
+     * @throws \Magento\Framework\Validation\ValidationException
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
-    public function execute(NewsInterface $news): NewsInterface;
+    public function execute(\Ivan\NewsApi\Api\Data\NewsInterface $news): \Ivan\NewsApi\Api\Data\NewsInterface;
 }

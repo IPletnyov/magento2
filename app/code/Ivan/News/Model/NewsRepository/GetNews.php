@@ -45,7 +45,7 @@ class GetNews implements GetNewsInterface
         $news = $this->newsFactory->create();
         $this->newsResource->load($news, $newsId, NewsInterface::FIELD_ID);
 
-        if (null === $news->getId()) {
+        if (null === $news->getNewsId()) {
             throw new NoSuchEntityException(__('News not found by provided ID: "%id".', ['id' => $newsId]));
         }
 

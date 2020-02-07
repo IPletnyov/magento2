@@ -1,7 +1,7 @@
 {
     "news": {
         "column": {
-            "id": true,
+            "news_id": true,
             "title": true,
             "text": true,
             "is_active": true

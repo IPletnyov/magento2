@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Ivan\NewsApi\Model\NewsRepository\SaveNews;
 
-use Ivan\NewsApi\Api\Data\NewsInterface;
-use Magento\Framework\Validation\ValidationResult;
-
 /**
  * News validator pool interface.
  */
@@ -15,8 +12,10 @@ interface NewsValidatorPoolInterface
     /**
      * Return validation errors related to news validation.
      *
-     * @param NewsInterface $news
-     * @return ValidationResult
+     * @param \Ivan\NewsApi\Api\Data\NewsInterface $news
+     * @return \Magento\Framework\Validation\ValidationResult
      */
-    public function validate(NewsInterface $news): ValidationResult;
+    public function validate(
+        \Ivan\NewsApi\Api\Data\NewsInterface $news
+    ): \Magento\Framework\Validation\ValidationResult;
 }

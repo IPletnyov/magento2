@@ -28,8 +28,8 @@
         <aclResource>Ivan_NewsApi::news</aclResource>
         <dataProvider class="Ivan\NewsAdminUi\Ui\DataProvider\NewsDataProvider" name="news_news_listing_data_source">
             <settings>
-                <requestFieldName>id</requestFieldName>
-                <primaryFieldName>id</primaryFieldName>
+                <requestFieldName>news_id</requestFieldName>
+                <primaryFieldName>news_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -96,7 +96,7 @@
                     <item name="saveUrl" xsi:type="url" path="news/news/gridItemEdit"/>
                     <item name="validateBeforeSave" xsi:type="boolean">false</item>
                 </param>
-                <param name="indexField" xsi:type="string">id</param>
+                <param name="indexField" xsi:type="string">news_id</param>
                 <param name="enabled" xsi:type="boolean">true</param>
                 <param name="selectProvider" xsi:type="string">news_news_listing.news_news_listing.news_news_listing_columns.ids</param>
             </editorConfig>
@@ -113,7 +113,7 @@
         </settings>
         <selectionsColumn name="ids" sortOrder="10">
             <settings>
-                <indexField>id</indexField>
+                <indexField>news_id</indexField>
             </settings>
         </selectionsColumn>
         <column name="title" sortOrder="20">
@@ -158,7 +158,7 @@
                 </item>
             </argument>
             <settings>
-                <indexField>id</indexField>
+                <indexField>news_id</indexField>
             </settings>
         </actionsColumn>
     </columns>

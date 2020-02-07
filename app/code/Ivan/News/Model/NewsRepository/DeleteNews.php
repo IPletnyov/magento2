@@ -34,10 +34,9 @@ class DeleteNews implements DeleteNewsInterface
     public function execute(NewsInterface $news): void
     {
         try {
-            $title = $news->getTitle();
             $this->newsResource->delete($news);
         } catch (\Exception $e) {
-            throw new StateException(__("News %1 could't removed", $title), $e);
+            throw new StateException(__("News %1 could't removed", $news->getTitle()), $e);
         }
     }
 }

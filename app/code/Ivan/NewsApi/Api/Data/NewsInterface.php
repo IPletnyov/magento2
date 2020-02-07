@@ -14,7 +14,7 @@ interface NewsInterface extends ExtensibleDataInterface
     /**
      * News ID field name.
      */
-    public const FIELD_ID = 'id';
+    public const FIELD_ID = 'news_id';
 
     /**
      * News title field name.
@@ -36,7 +36,15 @@ interface NewsInterface extends ExtensibleDataInterface
      *
      * @return int|null
      */
-    public function getId(): ?int;
+    public function getNewsId(): ?int;
+
+    /**
+     * Set news ID.
+     *
+     * @param int|null $newsId
+     * @return $this
+     */
+    public function setNewsId(?int $newsId): self;
 
     /**
      * Return news title.

@@ -69,7 +69,7 @@ class Save extends Action implements HttpPostActionInterface
     {
         $postData = $this->getRequest()->getParams();
         $result = [
-            'id' => $postData['id'] ?? null,
+            NewsInterface::FIELD_ID => $postData[NewsInterface::FIELD_ID] ?? null,
         ];
         $result = isset($postData['general']) ? array_merge($result, $postData['general']) : $result;
 
@@ -87,7 +87,7 @@ class Save extends Action implements HttpPostActionInterface
         $redirectParams = ['*/*/', []];
 
         if ($this->getRequest()->getParam('back') === 'edit') {
-            $redirectParams = ['*/*/edit', ['id' => $news->getId(), '_current' => true]];
+            $redirectParams = ['*/*/edit', ['news_id' => $news->getNewsId(), '_current' => true]];
         } elseif ((bool)$this->getRequest()->getParam('redirect_to_new') === true) {
             $redirectParams = ['*/*/new', []];
         }

@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Ivan\NewsApi\Model\NewsRepository;
 
-use Ivan\NewsApi\Api\Data\NewsInterface;
-use Magento\Framework\Exception\StateException;
-
 /**
  * Delete provided news.
  */
 interface DeleteNewsInterface
 {
     /**
-     * @param NewsInterface $news
+     * @param \Ivan\NewsApi\Api\Data\NewsInterface $news
      * @return void
-     * @throws StateException
+     * @throws \Magento\Framework\Exception\StateException
      */
-    public function execute(NewsInterface $news): void;
+    public function execute(\Ivan\NewsApi\Api\Data\NewsInterface $news): void;
 }

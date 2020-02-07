@@ -44,7 +44,7 @@ class Delete extends Action implements HttpPostActionInterface
     public function execute(): ResultInterface
     {
         $redirect = $this->resultRedirectFactory->create();
-        $newsId = (int)$this->getRequest()->getParam('id');
+        $newsId = (int)$this->getRequest()->getParam('news_id');
         try {
             $this->newsRepository->deleteById($newsId);
             $this->messageManager->addSuccessMessage(__("You've deleted the news."));

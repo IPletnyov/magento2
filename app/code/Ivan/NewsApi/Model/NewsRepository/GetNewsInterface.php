@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Ivan\NewsApi\Model\NewsRepository;
 
-use Ivan\NewsApi\Api\Data\NewsInterface;
-use Magento\Framework\Exception\NoSuchEntityException;
-
 /**
  * Get news interface.
  */
@@ -14,8 +11,8 @@ interface GetNewsInterface
 {
     /**
      * @param int $newsId
-     * @return NewsInterface
-     * @throws NoSuchEntityException
+     * @return \Ivan\NewsApi\Api\Data\NewsInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function execute(int $newsId): NewsInterface;
+    public function execute(int $newsId): \Ivan\NewsApi\Api\Data\NewsInterface;
 }
