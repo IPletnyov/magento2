@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceContainer name="content">
-        <block class="Magento\Framework\View\Element\Template" name="custom_view" template="Ivan_NewsFrontendUi::news.phtml"/>
-    </referenceContainer>
+    <head>
+        <css src="Ivan_NewsFrontendUi::css/news.css"/>
+    </head>
+    <body>
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Html\Link" name="news" after="customer">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Fresh news</argument>
+                    <argument name="sortOrder" xsi:type="number">1000</argument>
+                    <argument name="path" xsi:type="string">news</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Ivan\NewsFrontendUi\Block\News\Index\Index" name="fresh.news" template="Ivan_NewsFrontendUi::news.phtml"/>
+        </referenceContainer>
+    </body>
 </page>

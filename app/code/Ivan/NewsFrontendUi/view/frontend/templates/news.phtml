@@ -1,1 +1,15 @@
-asdasdadasdasdas
+<?php
+/**
+ * @var \Ivan\NewsFrontendUi\Block\News\Index\Index $block
+ */
+?>
+<div class="fresh-news">
+    <ul class="fresh-news-list">
+        <?php foreach ($block->getActiveNews()->getItems() as $news) : ?>
+            <li class="news-list-item">
+                <div class="title"><?php echo $news->getTitle(); ?></div>
+                <div class="text"><?php echo $news->getText(); ?></div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
