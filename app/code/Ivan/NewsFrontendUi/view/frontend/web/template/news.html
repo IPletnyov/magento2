@@ -1,0 +1,20 @@
+<if args="isNeedRenderNews()">
+    <div class="fresh-news">
+        <ul class="fresh-news-list">
+            <each args="data: news(), as: '$new'">
+                <li class="news-list-item">
+                    <div class="title" text="$new.title"></div>
+                    <div class="text" text="$new.text"></div>
+                </li>
+            </each>
+        </ul>
+        <div class="control-panel">
+            <if args="isPreviousButtonVisible()">
+                <span click="previousPage" class="button left-button">Previous page</span>
+            </if>
+            <if args="isNextButtonVisible()">
+                <span css="_visible: isNextButtonVisible" click="nextPage" class="button right-button">Next page</span>
+            </if>
+        </div>
+    </div>
+</if>

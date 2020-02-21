@@ -18,7 +18,7 @@ class Index extends Template
      */
     public function getListUrlPath(): string
     {
-        return 'rest/V1/news/list?' . $this->getSearchCriteriaQuery();
+        return 'rest/V1/news/list';
     }
 
     /**

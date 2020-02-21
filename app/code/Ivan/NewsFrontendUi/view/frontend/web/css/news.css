@@ -7,6 +7,7 @@
     list-style: none;
     max-width: 50%;
     margin: 0 auto;
+    min-height: 400px;
 }
 
 .fresh-news .fresh-news-list .news-list-item {
@@ -31,4 +32,26 @@
     font-style: italic;
 }
 
+.fresh-news .control-panel .button {
+    cursor: pointer;
+    background-color: #f3f3f3;
+    border-radius: 6px;
+    width: 120px;
+    height: 34px;
+    margin: 40px auto 0;
+    display: flex;
+}
 
+.fresh-news .control-panel {
+    padding: 0 290px;
+}
+
+.fresh-news .control-panel .button.left-button {
+    float: left;
+    padding: 13px 0 0 16px;
+}
+
+.fresh-news .control-panel .button.right-button {
+    float: right;
+    padding: 10px 0 0 47px;
+}
