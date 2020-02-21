@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="communication.news.save" request="Magento\AsynchronousOperations\Api\Data\OperationInterface">
+        <handler name="communication.news.save"
+                 type="Ivan\NewsAmqp\Model\SaveNews"
+                 method="execute"
+        />
+    </topic>
+</config>

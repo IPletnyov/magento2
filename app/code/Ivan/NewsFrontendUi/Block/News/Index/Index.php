@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace Ivan\NewsFrontendUi\Block\News\Index;
 
-use Ivan\NewsApi\Api\Data\NewsInterface;
-use Ivan\NewsApi\Api\Data\NewsSearchResultInterface;
-use Ivan\NewsApi\Api\NewsRepositoryInterface;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
 
 /**
  * Render all news.
@@ -17,43 +12,44 @@ use Magento\Framework\View\Element\Template\Context;
 class Index extends Template
 {
     /**
-     * @var NewsRepositoryInterface
+     * Return get list API URL path.
+     *
+     * @return string
      */
-    private $newsRepository;
-
-    /**
-     * @var SearchCriteriaBuilder
-     */
-    private $searchCriteriaBuilder;
-
-    /**
-     * @param Context $context
-     * @param NewsRepositoryInterface $newsRepository
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param array $data
-     */
-    public function __construct(
-        Context $context,
-        NewsRepositoryInterface $newsRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        array $data = []
-    ) {
-        parent::__construct($context, $data);
-        $this->newsRepository = $newsRepository;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+    public function getListUrlPath(): string
+    {
+        return 'rest/V1/news/list?' . $this->getSearchCriteriaQuery();
     }
 
     /**
-     * Return search criteria result with all active news.
+     * Build search criteria query for get all active news.
      *
-     * @return NewsSearchResultInterface
+     * @return string
      */
-    public function getActiveNews(): NewsSearchResultInterface
+    private function getSearchCriteriaQuery(): string
     {
-        $searchCriteria = $this->searchCriteriaBuilder
-            ->addFilter(NewsInterface::FIELD_IS_ACTIVE, 1)
-            ->create();
-
-        return $this->newsRepository->getList($searchCriteria);
+        return http_build_query([
+            'searchCriteria' => [
+                'filter_groups' => [
+                    [
+                        'filters' => [
+                            [
+                                'field' => 'is_active',
+                                'value' => '1',
+                                'condition_type' => 'eq',
+                            ],
+                        ],
+                    ],
+                ],
+                'sort_orders' => [
+                    [
+                        'field' => 'title',
+                        'direction' => 'DESC',
+                    ],
+                ],
+                'current_page' => 1,
+                'page_size' => 10,
+            ],
+        ]);
     }
 }

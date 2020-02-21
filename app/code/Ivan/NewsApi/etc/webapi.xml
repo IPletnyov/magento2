@@ -16,7 +16,7 @@
     <route url="/V1/news/:newsId" method="GET">
         <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="get"/>
         <resources>
-            <resource ref="Ivan_NewsApi::news"/>
+            <resource ref="anonymous"/>
         </resources>
     </route>
     <route url="/V1/news/:newsId" method="DELETE">
@@ -25,10 +25,10 @@
             <resource ref="Ivan_NewsApi::news"/>
         </resources>
     </route>
-    <route url="/V1/news" method="GET">
+    <route url="/V1/news/list" method="GET">
         <service class="Ivan\NewsApi\Api\NewsRepositoryInterface" method="getList"/>
         <resources>
-            <resource ref="Ivan_NewsApi::news"/>
+            <resource ref="anonymous"/>
         </resources>
     </route>
 </routes>

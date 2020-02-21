@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
+    <broker topic="news.save" exchange="magento-db" type="db">
+        <queue name="queue.news.save"
+               consumer="consumer.news.save"
+               consumerInstance="Magento\Framework\MessageQueue\Consumer"
+               handler="Ivan\NewsAmqp\Model\SaveNews::execute"
+        />
+    </broker>
+</config>
