@@ -7,7 +7,7 @@ namespace Ivan\NewsFrontendUi\Block\News\Index;
 use Magento\Framework\View\Element\Template;
 
 /**
- * Render all news.
+ * Render all news list page.
  */
 class Index extends Template
 {
