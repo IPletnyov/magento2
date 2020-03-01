@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="Ivan_ModuleCreator::index"
+            title="Create module components"
+            translate="title"
+            module="Ivan_ModuleCreator"
+            sortOrder="1000"
+            action="module-creator/index/index"
+            resource="Ivan_ModuleCreator::index"
+        />
+    </menu>
+</config>
